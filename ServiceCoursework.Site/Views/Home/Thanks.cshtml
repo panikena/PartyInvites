@@ -1,27 +1,72 @@
 ﻿@model ServiceCoursework.Site.Models.GuestResponse
+@using System.Net
+@using System.Net.Mail
+
 
 @{
     Layout = null;
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Thanks</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <style>
+        body {
+            background: #f1f1f1;
+        }
+    </style>
 </head>
 <body>
-    <div>
+    <!--@{
+        /*try
+        {
+            var fromAddress = new MailAddress("artem.denysenko@nure.ua", "RSVP Bot");
+            var toAddress = new MailAddress("panikenajr@gmail.com", "To Name");
+            string fromPassword = "eleemosynary";
+            string subject = "RSVP Приглашение";
+            string body = Model.Name + ((Model.WillAttend ?? false) ? "" : "не") + "придет";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.google.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+            }
+
+        }
+        catch (Exception)
+        {
+            @:<b>К сожалению при отправке письма возникла ошибка.</b>
+        }*/
+    }
+        -->
+    <div class="text-center">
         <h1>Спасибо, @Model.Name!</h1>
-        @if (Model.WillAttend == true)
-        {
-            @:Здорово что вы придете, напитки уже в холодильнике ;)
-        }
-        else
-        {
-            @:Жаль что вы не придете, но спасибо что дали об этом знать.
-        }
+        <div class="lead">
+            @if (Model.WillAttend == true)
+            {
+                @:Здорово что вы придете, напитки уже в холодильнике ;)
+            }
+            else
+            {
+                @:Жаль что вы не придете, но спасибо что дали об этом знать.
+            }
+        </div>
     </div>
 </body>
 </html>
