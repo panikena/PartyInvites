@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<users xmlns:json='http://james.newtonking.com/projects/json' json:array ="true">
+  <user>
+    <Id>1</Id>
+    <Password>asd</Password>
+    <Email>aaa</Email>
+    <Phone>123</Phone>
+  </user>
+  <user>
+    <Id>2</Id>
+    <Password>dsfds</Password>
+    <Email>sdfs</Email>
+    <Phone>sdfsd</Phone>
+  </user>
+  <user>
+    <Id>3</Id>
+    <Password>sdfds</Password>
+    <Email>sdfdsf</Email>
+    <Phone>dsfsdf</Phone>
+  </user>
+</users>
