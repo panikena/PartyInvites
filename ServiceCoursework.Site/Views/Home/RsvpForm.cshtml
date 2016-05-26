@@ -43,6 +43,10 @@
                             new SelectListItem() { Text = "Нет, я не смогу", Value = Boolean.FalseString}
                         }, "Выберите вариант", new { @class = "form-control" })
                 </div>
+                <div class="form-group">
+                    <label>Ваши комментарии:</label>
+                    @Html.TextBoxFor(x => x.Comment, new { @class = "form-control" })
+                </div>
                 <div class="text-center">
                     <input type="submit" value="Отправить форму RSVP" class="btn btn-success" />
                 </div>

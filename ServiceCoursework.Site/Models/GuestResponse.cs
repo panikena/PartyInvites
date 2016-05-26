@@ -19,7 +19,8 @@ namespace ServiceCoursework.Site.Models
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "Пожалуйста, укажите, примите ли участие в вечеринке")]
-        public bool? WillAttend { get; set; }
+        public bool WillAttend { get; set; }
+        public string Comment { get; set; }
 
     }
 }

@@ -28,7 +28,7 @@
             var toAddress = new MailAddress("artem.denysenko@nure.ua", "To Name");
             string fromPassword = "creative14";
             string subject = "RSVP Приглашение";
-            string body = Model.Name + ((Model.WillAttend ?? false) ? "" : "не") + "придет";
+            string body = Model.Name + (Model.WillAttend  ? "" : "не") + "придет";
 
             var smtp = new SmtpClient
             {
@@ -54,7 +54,7 @@
             @:<b>К сожалению при отправке письма возникла ошибка.</b>
         }
     }
-        -->
+
     <div class="text-center">
         <h1>Спасибо, @Model.Name!</h1>
         <div class="lead">
@@ -66,6 +66,10 @@
             {
                 @:Жаль что вы не придете, но спасибо что дали об этом знать.
             }
+        </div>
+        <br/>
+        <div class="btn btn-success">
+            @Html.ActionLink("На главную", "Index")
         </div>
     </div>
 </body>

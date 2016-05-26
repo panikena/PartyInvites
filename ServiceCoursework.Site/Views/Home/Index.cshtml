@@ -1,4 +1,6 @@
-﻿@{
+﻿@using ServiceCoursework.Services;
+
+@{
     Layout = null;
 }
 
@@ -29,6 +31,13 @@
         <div class="btn btn-success">
             @Html.ActionLink("Форма RSVP", "RsvpForm")
         </div>
+        <p>@ViewBag.ServiceEcho</p>
+        <p>Another echo: </p>
+        
+        @{
+            GuestService gs = new GuestService();
+        }
+        <p>@gs.Echo()</p>
     </div>
 </body>
 </html>
