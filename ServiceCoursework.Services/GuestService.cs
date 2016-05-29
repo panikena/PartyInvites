@@ -1,12 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
-using System.Xml;
 
 namespace ServiceCoursework.Services
 {
@@ -55,7 +50,15 @@ namespace ServiceCoursework.Services
             }
         }
 
+        public List<Guests> GetAll() {
+            return DB.Guests.ToList();
+        }
 
+        public string GetAllInJson()
+        {
+            return JsonConvert.SerializeObject(DB.Guests.ToList());
+
+        }
         //        { "Name": "John Galt", "Email": "adenisenko@ymail.com", "Phone": "0000", "WillAttend" : true, "Comment": "Send me a message" }
 
         public Guests CreateGuest(string name, string email, string phone, bool willAttend, string comment)

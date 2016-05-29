@@ -171,6 +171,18 @@ namespace ServiceCoursework.Site.GuestServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGuestService/AddGuest", ReplyAction="http://tempuri.org/IGuestService/AddGuestResponse")]
         System.Threading.Tasks.Task<string> AddGuestAsync(ServiceCoursework.Site.GuestServiceReference.Guests value);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGuestService/GetAll", ReplyAction="http://tempuri.org/IGuestService/GetAllResponse")]
+        ServiceCoursework.Site.GuestServiceReference.Guests[] GetAll();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGuestService/GetAll", ReplyAction="http://tempuri.org/IGuestService/GetAllResponse")]
+        System.Threading.Tasks.Task<ServiceCoursework.Site.GuestServiceReference.Guests[]> GetAllAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGuestService/GetAllInJson", ReplyAction="http://tempuri.org/IGuestService/GetAllInJsonResponse")]
+        string GetAllInJson();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGuestService/GetAllInJson", ReplyAction="http://tempuri.org/IGuestService/GetAllInJsonResponse")]
+        System.Threading.Tasks.Task<string> GetAllInJsonAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -238,6 +250,22 @@ namespace ServiceCoursework.Site.GuestServiceReference {
         
         public System.Threading.Tasks.Task<string> AddGuestAsync(ServiceCoursework.Site.GuestServiceReference.Guests value) {
             return base.Channel.AddGuestAsync(value);
+        }
+        
+        public ServiceCoursework.Site.GuestServiceReference.Guests[] GetAll() {
+            return base.Channel.GetAll();
+        }
+        
+        public System.Threading.Tasks.Task<ServiceCoursework.Site.GuestServiceReference.Guests[]> GetAllAsync() {
+            return base.Channel.GetAllAsync();
+        }
+        
+        public string GetAllInJson() {
+            return base.Channel.GetAllInJson();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetAllInJsonAsync() {
+            return base.Channel.GetAllInJsonAsync();
         }
     }
 }

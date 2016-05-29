@@ -19,19 +19,31 @@
         body {
             background-color: #F1F1F1;
         }
+        .main-td {
+            width : 95%;
+        }
+        .btn-td {
+            width : 5%;
+        }
     </style>
 </head>
 <body>
-    <div class="text-center">
-        <h2>Мы собираемся на захватывающую вечеринку.</h2>
-        <h3>И вы приглашены, нужно только заполнить форму</h3>
-        <br />
-        <div class="btn btn-success">
-            @Html.ActionLink("Форма RSVP", "RsvpForm")
-        </div>
-        <p>@ViewBag.ServiceEcho</p>
-        <p>Another echo: </p>
-       
-    </div>
+    <table>
+        <tr>
+            <td class="main-td">
+                <div class="text-center">
+                    <h2>Мы устраиваем захватывающую вечеринку!</h2>
+                    <h3>И вы приглашены, нужно только заполнить форму</h3>
+                    <br />
+                    <div class="btn btn-success">
+                        @Html.ActionLink("Форма RSVP", "RsvpForm")
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+
+   
 </body>
 </html>

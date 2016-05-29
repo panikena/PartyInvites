@@ -1,0 +1,81 @@
+﻿@using ServiceCoursework.Site.GuestServiceReference
+@model IEnumerable<ServiceCoursework.Site.GuestServiceReference.Guests>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<style>
+    
+#guests {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#guests td, #guests th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+#guests tr:nth-child(even){background-color: #f2f2f2}
+
+#guests tr:hover {background-color: #ddd;}
+
+#guests th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+}
+    .button {
+        color : white;
+    }
+</style>
+
+<html>
+<head>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Guest table</title>
+</head>
+<body>
+    <div>
+        <table id="guests">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>WillAttend</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                @foreach (var guest in Model)
+                {
+                    <td>@guest.id</td>
+                    <td>@guest.Name</td>
+                    <td>@guest.Email</td>
+                    <td>@guest.Phone</td>
+                    <td>@guest.WillAttend</td>
+                    <td>@guest.Comment</td>
+                }
+            </tr>
+          </table>
+    </div>
+
+    <br/>
+    <br />
+    <br />
+    <div class="btn btn-success button" >
+        @Html.ActionLink("На главную", "Index")
+    </div>
+    <br />
+    <br />
+
+</body>
+</html>

@@ -33,6 +33,11 @@ namespace ServiceCoursework.Services
         [OperationContract]
         string AddGuest(Guests value);
 
+        [OperationContract]
+        List<Guests> GetAll();
+
+        [OperationContract]
+        string GetAllInJson();
 
     }
 }

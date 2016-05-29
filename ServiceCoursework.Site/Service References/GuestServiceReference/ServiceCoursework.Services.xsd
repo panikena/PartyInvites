@@ -11,4 +11,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Guests" nillable="true" type="tns:Guests" />
+  <xs:complexType name="ArrayOfGuests">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Guests" nillable="true" type="tns:Guests" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGuests" nillable="true" type="tns:ArrayOfGuests" />
 </xs:schema>

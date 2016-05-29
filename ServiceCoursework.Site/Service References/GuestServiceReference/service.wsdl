@@ -37,6 +37,18 @@
   <wsdl:message name="IGuestService_AddGuest_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddGuestResponse" />
   </wsdl:message>
+  <wsdl:message name="IGuestService_GetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAll" />
+  </wsdl:message>
+  <wsdl:message name="IGuestService_GetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGuestService_GetAllInJson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllInJson" />
+  </wsdl:message>
+  <wsdl:message name="IGuestService_GetAllInJson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllInJsonResponse" />
+  </wsdl:message>
   <wsdl:portType name="IGuestService">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IGuestService/GetData" message="tns:IGuestService_GetData_InputMessage" />
@@ -57,6 +69,14 @@
     <wsdl:operation name="AddGuest">
       <wsdl:input wsaw:Action="http://tempuri.org/IGuestService/AddGuest" message="tns:IGuestService_AddGuest_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGuestService/AddGuestResponse" message="tns:IGuestService_AddGuest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGuestService/GetAll" message="tns:IGuestService_GetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGuestService/GetAllResponse" message="tns:IGuestService_GetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInJson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGuestService/GetAllInJson" message="tns:IGuestService_GetAllInJson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGuestService/GetAllInJsonResponse" message="tns:IGuestService_GetAllInJson_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IGuestService" type="tns:IGuestService">
@@ -99,6 +119,24 @@
     </wsdl:operation>
     <wsdl:operation name="AddGuest">
       <soap:operation soapAction="http://tempuri.org/IGuestService/AddGuest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <soap:operation soapAction="http://tempuri.org/IGuestService/GetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInJson">
+      <soap:operation soapAction="http://tempuri.org/IGuestService/GetAllInJson" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

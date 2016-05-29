@@ -1,4 +1,5 @@
-﻿using ServiceCoursework.Site.Models;
+﻿using ServiceCoursework.Site.GuestServiceReference;
+using ServiceCoursework.Site.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace ServiceCoursework.Site.Controllers
     {
 
         GuestServiceReference.GuestServiceClient guestService = new GuestServiceReference.GuestServiceClient();
+
+       
         MailServiceReference.MailServiceClient mailService = new MailServiceReference.MailServiceClient();
 
         // GET: Home
@@ -43,6 +46,16 @@ namespace ServiceCoursework.Site.Controllers
             else
                 // Обнаружена ошибка проверки достоверности
                 return View();
+        }
+
+        public ActionResult Guests()
+        {
+            return View();
+        }
+
+
+        public ActionResult Admin() {
+            return View(guestService.GetAll());
         }
     }
 }
