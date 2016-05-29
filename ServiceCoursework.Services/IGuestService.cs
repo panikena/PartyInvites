@@ -14,7 +14,7 @@ namespace ServiceCoursework.Services
     public interface IGuestService
     {
         [OperationContract]
-        [WebInvoke(UriTemplate = "GetData/{value}", Method = "POST") ]
+        [WebInvoke(UriTemplate = "GetData/{value}", Method = "POST")]
         string GetData(string value);
 
 
@@ -23,39 +23,16 @@ namespace ServiceCoursework.Services
         string Echo();
 
         [OperationContract]
-        XmlDocument CreateGuestXML(string name, string email, string phone, bool willAttend, string comment);
+        [WebGet(UriTemplate = "CreateGuest/{name}/{email}/{phone}/{willAttend}/{comment}", ResponseFormat = WebMessageFormat.Json)]
+        Guests CreateGuest(string name, string email, string phone, bool willAttend, string comment);
 
         [OperationContract]
-        [WebInvoke(UriTemplate = "AddGuest", Method = "POST", RequestFormat = WebMessageFormat.Xml)]
-        Guests AddGuest(XmlDocument value);
-
+        [WebInvoke(UriTemplate = "AddGuest", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        string AddGuestByJson(string value);
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        string AddGuest(Guests value);
 
-        // TODO: Add your service operations here
-    }
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "ServiceCoursework.Services.ContractType".
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
     }
 }

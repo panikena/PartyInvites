@@ -1,6 +1,4 @@
 ﻿@model ServiceCoursework.Site.Models.GuestResponse
-@using System.Net
-@using System.Net.Mail
 
 
 @{
@@ -14,46 +12,18 @@
     <title>Thanks</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
-    <style>
+    <style> 
+        .btn a {
+            color: white;
+            text-decoration: none;
+        }
+
         body {
-            background: #f1f1f1;
+            background-color: #F1F1F1;
         }
     </style>
 </head>
 <body>
-  @{
-       try
-        {
-            var fromAddress = new MailAddress("panikenajr@gmail.com", "RSVP Bot");
-            var toAddress = new MailAddress("artem.denysenko@nure.ua", "To Name");
-            string fromPassword = "creative14";
-            string subject = "RSVP Приглашение";
-            string body = Model.Name + (Model.WillAttend  ? "" : "не") + "придет";
-
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.google.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            };
-            using (var message = new MailMessage(fromAddress, toAddress)
-            {
-                Subject = subject,
-                Body = body
-            })
-            {
-                smtp.Send(message);
-            }
-
-        }
-        catch (Exception)
-        {
-            @:<b>К сожалению при отправке письма возникла ошибка.</b>
-        }
-    }
 
     <div class="text-center">
         <h1>Спасибо, @Model.Name!</h1>

@@ -4,18 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ServiceCoursework.Services;
 using System.Xml;
 
 namespace ServiceCoursework.Site.Controllers
 {
     public class HomeController : Controller
     {
+
+        GuestServiceReference.GuestServiceClient guestService = new GuestServiceReference.GuestServiceClient();
+        MailServiceReference.MailServiceClient mailService = new MailServiceReference.MailServiceClient();
+
         // GET: Home
         public ViewResult Index()
         {
-            GuestService service = new GuestService();
-            ViewBag.ServiceEcho = service.Echo();
             return View();
         }
 
@@ -33,8 +34,10 @@ namespace ServiceCoursework.Site.Controllers
             {
                 // Нужно отправить данные нового гостя по электронной почте 
                 // организатору вечеринки.
-                GuestService gs = new GuestService();
-                gs.AddGuest(gs.CreateGuestXML(guest.Name, guest.Email, guest.Phone, guest.WillAttend, guest.Comment));
+
+                guestService.AddGuest(guestService.CreateGuest(guest.Name, guest.Email, guest.Phone, guest.WillAttend, guest.Comment));
+                mailService.SendMail(guest.Email, "Вечеринка", "Спасибо, что придете на вечеринку, " + guest.Name + ". ");
+               
                 return View("Thanks", guest);
             }
             else

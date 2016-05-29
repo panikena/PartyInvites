@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace ServiceCoursework.Services
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class GuestService : IGuestService
     {
+
+        ServiceDBEntities DB = new ServiceDBEntities();
         public string Echo()
         {
             return "Guest service echo!";
@@ -22,68 +25,49 @@ namespace ServiceCoursework.Services
             return string.Format("You entered: {0}", value);
         }
 
-        public Guests AddGuest(XmlDocument value)
+        public string AddGuestByJson(string value)
         {
-            ServiceDBEntities DB = new ServiceDBEntities();
+            try
+            {
 
-            Guests guest = new Guests();
+                Guests guest = JsonConvert.DeserializeObject<Guests>(value);
 
-            XmlNode xnGuest = value.SelectSingleNode("Guest");
+                DB.Guests.Add(guest);
+                DB.SaveChanges();
+                return "Successfully saved guest record.";
+            }
+            catch (Exception ex) {
+                return String.Format("An exception was encountered: {0}", ex.Message);
+            }
+        }
 
-            guest.Name = xnGuest.SelectSingleNode("Name").InnerText;
-            guest.Email = xnGuest.SelectSingleNode("Email").InnerText;
-            guest.Phone = xnGuest.SelectSingleNode("Phone").InnerText;
-            guest.WillAttend = Boolean.Parse(xnGuest.SelectSingleNode("WillAttend").InnerText);
-            guest.Comment = xnGuest.SelectSingleNode("Comment").InnerText;
-
-            DB.Guests.Add(guest);
-            DB.SaveChanges();
-
-            return guest;
+        public string AddGuest(Guests value)
+        {
+            try
+            {
+                DB.Guests.Add(value);
+                DB.SaveChanges();
+                return "Successfully saved guest record.";
+            }
+            catch (Exception ex)
+            {
+                return String.Format("An exception was encountered: {0}", ex.Message);
+            }
         }
 
 
-        public XmlDocument CreateGuestXML(string name, string email, string phone, bool willAttend, string comment)
+        //        { "Name": "John Galt", "Email": "adenisenko@ymail.com", "Phone": "0000", "WillAttend" : true, "Comment": "Send me a message" }
+
+        public Guests CreateGuest(string name, string email, string phone, bool willAttend, string comment)
         {
-            
-                MemoryStream ms = new MemoryStream();
-                XmlTextWriter textWriter = new XmlTextWriter(ms, Encoding.UTF8);
-
-                textWriter.WriteStartDocument();
-
-                textWriter.WriteStartElement("Guest");
-
-                textWriter.WriteElementString("Name", name);
-                textWriter.WriteElementString("Email", email);
-                textWriter.WriteElementString("Phone", phone);
-                textWriter.WriteElementString("WillAttend", willAttend ? Boolean.TrueString : Boolean.FalseString);
-                textWriter.WriteElementString("Comment", comment);
-
-                textWriter.WriteEndElement();
-
-                textWriter.Flush();
-                
-
-                XmlDocument doc = new XmlDocument();
-
-                ms.Position = 0;
-                doc.Load(ms);
-                return doc;
-           
-        }
-
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
+            return new Guests
             {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+                Name = name,
+                Email = email,
+                Phone = phone,
+                WillAttend = willAttend,
+                Comment = comment
+            };
         }
     }
 }

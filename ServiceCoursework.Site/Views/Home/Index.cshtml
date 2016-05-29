@@ -1,6 +1,4 @@
-﻿@using ServiceCoursework.Services;
-
-@{
+﻿@{
     Layout = null;
 }
 
@@ -33,11 +31,7 @@
         </div>
         <p>@ViewBag.ServiceEcho</p>
         <p>Another echo: </p>
-        
-        @{
-            GuestService gs = new GuestService();
-        }
-        <p>@gs.Echo()</p>
+       
     </div>
 </body>
 </html>
